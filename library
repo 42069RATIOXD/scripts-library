@@ -1,0 +1,25 @@
+start_gc = getgc(true) --it won't get updated so that there will be no lags
+
+function print_table(t)
+if type(t) == "table" then
+    for i, v in next, t do
+        print(i, v)
+    end
+    end
+end
+
+function execute_hydroxide()
+  local owner = "Upbolt"
+  local branch = "revision"
+  
+  local function webImport(file)
+      return loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/%s/Hydroxide/%s/%s.lua"):format(owner, branch, file)), file .. '.lua')()
+  end
+  
+  webImport("init")
+  webImport("ui/main")
+end
+
+function execute_infinite_yield()
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+end
