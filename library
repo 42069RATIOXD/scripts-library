@@ -45,7 +45,7 @@ task.wait()
 local Servers = ListServers(Next)
 for i,v in next, Servers.data do
 if v.playing < goofyahhvalue and v.id ~= _id then
-task.wait(1)
+task.wait(5)
 local s,r = pcall(TPS.TeleportToPlaceInstance,TPS,_place,v.id,Player)
 if s then break end
 end
