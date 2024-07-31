@@ -1,3 +1,4 @@
+function()
 start_gc = getgc(true) --it won't get updated so that there will be no lags
 
 function print_table(t)
@@ -23,3 +24,5 @@ end
 function execute_infinite_yield()
   loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 end
+return start_gc, print_table
+end)
