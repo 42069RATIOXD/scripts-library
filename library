@@ -1,4 +1,5 @@
-{
+genv = getgenv()
+
 start_gc = getgc(true) --it won't get updated so that there will be no lags
 
 function print_table(t)
@@ -24,4 +25,8 @@ end
 function execute_infinite_yield()
   loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 end
-}
+
+genv.start_gc = start_gc
+genv.print_table = print_table
+genv.execute_hydroxide = execute_hydroxide
+genv.execute_infinite_yield = execute_infinite_yield
