@@ -1,6 +1,7 @@
 genv = getgenv()
 
-start_gc = getgc(true) --it won't get updated so that there will be no lags
+return {
+start_gc = getgc(true), --it won't get updated so that there will be no lags
 
 function print_table(t)
 if type(t) == "table" then
@@ -8,7 +9,7 @@ if type(t) == "table" then
         print(i, v)
     end
     end
-end
+end,
 
 function hydroxide()
   local owner = "Upbolt"
@@ -20,11 +21,11 @@ function hydroxide()
   
   webImport("init")
   webImport("ui/main")
-end
+end,
 
 function infinite_yield()
   loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
-end
+end,
 
 function shop(min, max)
 local goofyahhvalue = math.random(min, max)
@@ -52,13 +53,7 @@ end
 
 Next = Servers.nextPageCursor
 until not Next
-end
-
-genv.start_gc = start_gc
-genv.print_table = print_table
-genv.execute_hydroxide = execute_hydroxide
-genv.execute_infinite_yield = execute_infinite_yield
-genv.shop = shop
+end,
 
 genv.postWebhook = function(content, message, webhook_url)
     task.spawn(function()
@@ -99,3 +94,4 @@ genv.postWebhook = function(content, message, webhook_url)
             postSucceeded == true or tryTimes >= 5
     end)
 end
+}
