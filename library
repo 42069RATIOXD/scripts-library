@@ -59,3 +59,43 @@ genv.print_table = print_table
 genv.execute_hydroxide = execute_hydroxide
 genv.execute_infinite_yield = execute_infinite_yield
 genv.shop = shop
+
+genv.postWebhook = function(content, message, webhook_url)
+    task.spawn(function()
+        local data = {
+            ["content"] = content,
+            ["embeds"] = {
+                {
+                    ["title"] = "",
+                    ["description"] = message,
+                    ["type"] = "rich",
+                    ["color"] = tonumber(12993321),
+                    ["image"] = {
+                        ["url"] = ""
+                    }
+                }
+            }
+        }
+        local newdata = game:GetService("HttpService"):JSONEncode(data)
+        
+        local headers = {
+            ["content-type"] = "application/json"
+        }
+        request = http_request or request or HttpPost
+        local abcdef = {
+            Url = webhook_url,
+            Body = newdata,
+            Method = "POST",
+            Headers = headers
+        }
+        local postSucceeded = false
+        local tryTimes = 0
+        repeat
+            tryTimes += 1
+            local req = request(abcdef)
+            postSucceeded = req.Success
+            task.wait(0.1)
+        until
+            postSucceeded == true or tryTimes >= 5
+    end)
+end
